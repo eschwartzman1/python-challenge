@@ -1,77 +1,78 @@
-# First we'll import the os module 
-# This will allow us to create file paths across operating systems
-import os
+# Dependencies
+# ------------------------------------
 import csv
-import collections
-csvpath = os.path.join('budget_data_1.csv')
 
-# Improved Reading using CSV module
-with open(csvpath, newline='') as csvfile:
-    # next(csvfile)
-    # print collections.counter(line.rstrip().rpartition('    ')[-1])
+# Files to Load and Output
+# ------------------------------------
+file_to_load = "budget_data_1.csv"
+file_to_output = "budget_analysis_1.txt"
 
-   # CSV reader specifies delimiter and variable that holds contents
-    csvreader = csv.reader(csvfile, delimiter=',')
+# Variables
+# ------------------------------------
+total_months = 0
+total_revenue = 0
+prev_revenue = 0
+current_revenue = 0
+revenue_change_list = []
 
-    # Skips the header
-    next(csvreader)
+# Main Process
+# ------------------------------------
 
-    total_months = []
-    total_revenue = []
-    average_change = []
-    greatest_increase = []
-    greatest_decrease = []
+# Read the CSV
+with open(file_to_load) as revenue_data:
 
-    month_count = collections.Counter()
-    for Date, total_months in csvreader
-        month_count.update([Date])
-        total_months.append(float(total_months))
+  # Loop through each row of the dataset as a Dictionary
+  reader = csv.DictReader(revenue_data)
 
-    total = sum(total_months)
+  for row in reader:
+    print(row)
 
-    revenue_total = collections.Counter()
-    for Revenue, total_revenue in csvreader
-        revenue_total.update([Revenue])
-        total_revenue.append(float(total_revenue))
+    # Take note of the current revenue 
+    # Current Revenue = 1154293
+    # Current Revenue = 885773
+    current_revenue = int(row["Revenue"])
 
-    total = sum(total_revenue)
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   #  Each row is read as a row
-    # for row in csvreader:
-        # print(row)
-        # print(row[0])
+    # Calculate the Change in Revenue
+    # Change in Revenue = 1154293 - 0
+    # Change in Revenue = 885773 - 1154293
+    revenue_change_list.append(current_revenue - prev_revenue)
 
+    # Set the value of the previous revenue
+    # Previous Revenue = 1154293
+    prev_revenue = current_revenue
+
+    # Tally up the months
+    total_months = total_months + 1
+
+    # Tally up the revenue
+    total_revenue = total_revenue + int(row["Revenue"])
 
 
+  print("-----------------")
 
+  # Print the Total Months
+  print("Total Months: " + str(total_months))
 
+  # Print the Total Revenue
+  print("Total Revenue: $" + str(total_revenue))
 
+  # Print the Greatest Increase
+  print("Greatest Increase: $" + str(max(revenue_change_list)))
+  greatest_increase = max(revenue_change_list)
 
+  # Print the Greatest Decrease
+  print("Greatest Decrease: $" + str(min(revenue_change_list)))
+  greatest_decrease = min(revenue_change_list)
 
+  # Print the Average Change
+  print("Average Change: $" + str(sum(revenue_change_list) / len(revenue_change_list)))
+  average_change = sum(revenue_change_list) / len(revenue_change_list)
 
-
-
-    # new_csv = os.path.join('solved.csv')
-    #     with open(new_csv, 'w') as new_csv:
-    #         csvwriter = csv.writer(new_csv)
-    #         # Define column headers
-    #         columns = ["Total Months", "Total Revenue", "Average Revenue Change", "Greatest Increase in Revenue", "Greatest Decrease in Revenue"]
-    #         # Define CSV dictionary writer. fieldnames refers to the list of column headers
-    #         writer = csv.DictWriter(bank_data, delimiter=',', fieldnames=columns)
-    #         # Write the column headers
-    #         writer.writeheader()
-
-    #         # Enumerate adds a counter to an iterable
-    #         for i, row in enumerate(csvreader):
-    #             if i != 1:
-    #                 row.append()
-
+  # Write Output
+  with open(file_to_output, "w") as txt_file:
+    txt_file.write("Total Months: " + str(total_months) + "\n")
+    txt_file.write("Total Revenue: $" + str(total_revenue) + "\n")
+    txt_file.write("Greatest Increase: $" + str(greatest_increase) + "\n")
+    txt_file.write("Greatest Decrease: $" + str(greatest_decrease) + "\n")
+    txt_file.write("Average Change: $" + str(average_change) + "\n")
     
