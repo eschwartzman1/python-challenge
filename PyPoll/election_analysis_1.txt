@@ -1,0 +1,7 @@
+Election Results 
+----------------------
+----------------------
+Total Votes: 500
+----------------------
+The winning candidate is Khan
+The greatest vote percentage is: 63.0

@@ -61,6 +61,22 @@ with open(file_to_load) as election_data:
       greatest_vote_candidate = candidate
       greatest_vote_percentage = vote_percentage
 
-  # Printing The Winner
+  # Printing Election Results/The Winner
+  print("Election results ")
+  print("----------------------")
+  print("Total votes: " + str(total_votes))
+  print("----------------------")
+  # print(str(vote_percentage) + " %")
+  print("----------------------")
   print("The winning candidate is " + greatest_vote_candidate)
-  print("The greatest vote percentage is: " + str(greatest_vote_percentage))
+  print("The greatest vote percentage is: " + str(greatest_vote_percentage) + " %")
+
+  # Write Output
+  with open(file_to_output, "w") as txt_file:
+    txt_file.write("Election Results " + "\n")
+    txt_file.write("----------------------" + "\n")
+    txt_file.write("----------------------" + "\n")
+    txt_file.write("Total Votes: " + str(total_votes) + "\n")
+    txt_file.write("----------------------" + "\n")
+    txt_file.write("The winning candidate is " + greatest_vote_candidate + "\n")
+    txt_file.write("The greatest vote percentage is: " + str(greatest_vote_percentage) + "\n")
