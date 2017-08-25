@@ -12,6 +12,8 @@ file_to_output = "election_analysis_1.txt"
 # [{"Khan": 5}, {"Li": 2}, {"Correy": 70}]
 candidate_options = []
 candidate_votes = {}
+voting_percent = []
+loop_count = 0
 
 winning_candidate = ""
 winning_count = 0
@@ -50,44 +52,48 @@ with open(file_to_load) as election_data:
     print(value)
     print(int(value) * 100 / total_votes)
 
-    vote_percent = (int(value) * 100 / total_votes)
-  # # Iterate through the candidate_votes
-  # for candidate in candidate_votes:
+    
+    voting_percent.append(int(value) * 100 / total_votes)
 
-  #   votes = candidate_votes[candidate]
-  #   vote_percentage = (votes / total_votes)  * 100
-  #   print(votes)
-  #   print(total_votes)
-  #   print("-----------------")
-  #   print(vote_percentage)
-  #   print("-----------------")
 
-  #   if(vote_percentage > greatest_vote_percentage):
+  # Iterate through the candidate_votes
+  for candidate in candidate_votes:
 
-  #     greatest_vote_candidate = candidate
-  #     greatest_vote_percentage = vote_percentage
+    votes = candidate_votes[candidate]
+    vote_percentage = (votes / total_votes)  * 100
+    print(votes)
+    print(total_votes)
+    print("-----------------")
+    print(vote_percentage)
+    print("-----------------")
 
-  # # Printing Election Results/The Winner
-  # print("Election results ")
-  # print("----------------------")
-  # print("Total votes: " + str(total_votes))
-  # print("----------------------")
-  # print("Khan: ")
-  # print("Li: ")
-  # print("Correy: ")
-  # print("O'Tooley: ")
+    if(vote_percentage > greatest_vote_percentage):
 
-  # # print(str(vote_percentage) + " %")
-  # print("----------------------")
-  # print("The winning candidate is " + greatest_vote_candidate)
-  # print("The greatest vote percentage is: " + str(greatest_vote_percentage) + " %")
+      greatest_vote_candidate = candidate
+      greatest_vote_percentage = vote_percentage
+
+  # Printing Election Results/The Winner
+  print("Election results ")
+  print("----------------------")
+  print("Total votes: " + str(total_votes))
+  print("----------------------")
+  print("Khan: ")
+  print("Li: ")
+  print("Correy: ")
+  print("O'Tooley: ")
+
+  # print(str(vote_percentage) + " %")
+  print("----------------------")
+  print("The winning candidate is " + greatest_vote_candidate)
+  print("The greatest vote percentage is: " + str(greatest_vote_percentage) + " %")
 
   # Write Output
   with open(file_to_output, "w") as txt_file:
       for key, value in candidate_votes.items():
-
+       
        txt_file.write(key + "\n")
        txt_file.write(str(value) + "\n")
-       txt_file.write((int(value) * 100 / int(total_votes)) + "\n")
+       txt_file.write(str(voting_percent[loop_count]) + "\n")
+       loop_count = loop_count+1
       txt_file.write("The winning candidate is " + greatest_vote_candidate + "\n")
       txt_file.write("The greatest vote percentage is: " + str(greatest_vote_percentage) + "\n")
