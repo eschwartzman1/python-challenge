@@ -1,14 +1,22 @@
+Election results
+--------------------
+Total votes: 500
+--------------------
 Khan
-315
-63.0
+315 votes
+63.0 %
+--------------------
 Li
-70
-14.0
+70 votes
+14.0 %
+--------------------
 Correy
-100
-20.0
+100 votes
+20.0 %
+--------------------
 O'Tooley
-15
-3.0
+15 votes
+3.0 %
+--------------------
 The winning candidate is Khan
-The greatest vote percentage is: 63.0
+The greatest vote percentage is: 63.0 %
